@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# Log folders
+samples
+
+# User notebooks
+train_lazy.ipynb
+
+# Old models
+best.pt
+
 # Distribution / packaging
 .Python
 build/
