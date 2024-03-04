@@ -86,4 +86,3 @@ class ProjectAgent:
     def load(self):
         print(os.getcwd())
         self.model = load(os.path.join(os.getcwd(), "src/Q_best"))
-        print(f"Using {self.model}")
