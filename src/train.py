@@ -1,13 +1,11 @@
 from gymnasium.wrappers import TimeLimit
 from env_hiv import HIVPatient
 import numpy as np
-from tqdm import tqdm
-from sklearn.ensemble import RandomForestRegressor
-import copy
+#import copy
 import random
-import torch.nn as nn
-import torch.nn.functional as F
-import torch
+# import torch.nn as nn
+# import torch.nn.functional as F
+# import torch
 from joblib import dump, load
 
 env = TimeLimit(
@@ -29,33 +27,33 @@ env = TimeLimit(
 #     def load(self):
 #         pass
 
-class ReplayBuffer:
-    def __init__(self, capacity):
-        self.capacity = capacity # capacity of the buffer
-        self.data = []
-        self.index = 0 # index of the next cell to be filled
-    def append(self, s, a, r, s_, d):
-        if len(self.data) < self.capacity:
-            self.data.append(None)
-        self.data[self.index] = (s, a, r, s_, d)
-        self.index = (self.index + 1) % self.capacity
-    def sample(self, batch_size):
-        batch = random.sample(self.data, batch_size)
-        return list(map(lambda x:torch.Tensor(np.array(x)), list(zip(*batch))))
-    def __len__(self):
-        return len(self.data)
+# class ReplayBuffer:
+#     def __init__(self, capacity):
+#         self.capacity = capacity # capacity of the buffer
+#         self.data = []
+#         self.index = 0 # index of the next cell to be filled
+#     def append(self, s, a, r, s_, d):
+#         if len(self.data) < self.capacity:
+#             self.data.append(None)
+#         self.data[self.index] = (s, a, r, s_, d)
+#         self.index = (self.index + 1) % self.capacity
+#     def sample(self, batch_size):
+#         batch = random.sample(self.data, batch_size)
+#         return list(map(lambda x:torch.Tensor(np.array(x)), list(zip(*batch))))
+#     def __len__(self):
+#         return len(self.data)
     
-state_dim = env.observation_space.shape[0]
-n_action = env.action_space.n 
-nb_neurons=36
-DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
+# state_dim = env.observation_space.shape[0]
+# n_action = env.action_space.n 
+# nb_neurons=36
+# DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
 
-                          nn.ReLU(),
-                          nn.Linear(nb_neurons, nb_neurons),
-                          nn.ReLU(),
-                          nn.Linear(nb_neurons, nb_neurons),
-                          nn.ReLU(),
-                          nn.Linear(nb_neurons, n_action))
+#                           nn.ReLU(),
+#                           nn.Linear(nb_neurons, nb_neurons),
+#                           nn.ReLU(),
+#                           nn.Linear(nb_neurons, nb_neurons),
+#                           nn.ReLU(),
+#                           nn.Linear(nb_neurons, n_action))
 
 # class ProjectAgent:
 #     def __init__(self):
@@ -85,5 +83,5 @@ class ProjectAgent:
         pass
         # torch.save(self.model.state_dict(), r"best.pt")
     def load(self):
-        self.model = load("samples\Q6")
+        self.model = load("Q_best")
         print(f"Using {self.model}")
