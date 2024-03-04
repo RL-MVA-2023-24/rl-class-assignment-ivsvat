@@ -85,5 +85,5 @@ class ProjectAgent:
         # torch.save(self.model.state_dict(), r"best.pt")
     def load(self):
         print(os.getcwd())
-        self.model = load(os.path.join(os.getcwd(), "src\Q_best"))
+        self.model = load(os.path.join(os.getcwd(), "src/Q_best"))
         print(f"Using {self.model}")
