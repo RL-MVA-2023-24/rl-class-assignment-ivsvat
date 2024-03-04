@@ -7,6 +7,7 @@ import random
 # import torch.nn.functional as F
 # import torch
 from joblib import dump, load
+import os
 
 env = TimeLimit(
     env=HIVPatient(domain_randomization=False), max_episode_steps=200
@@ -83,5 +84,6 @@ class ProjectAgent:
         pass
         # torch.save(self.model.state_dict(), r"best.pt")
     def load(self):
-        self.model = load("Q_best")
+        print(os.getcwd())
+        self.model = load(os.path.join(os.getcwd(), "src\Q_best"))
         print(f"Using {self.model}")
