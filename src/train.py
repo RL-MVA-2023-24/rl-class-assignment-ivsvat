@@ -8,6 +8,7 @@ import random
 # import torch
 from joblib import dump, load
 import os
+from sklearn.ensemble import HistGradientBoostingRegressor
 
 env = TimeLimit(
     env=HIVPatient(domain_randomization=False), max_episode_steps=200
@@ -70,7 +71,7 @@ env = TimeLimit(
 
 class ProjectAgent:
     def __init__(self):
-        self.model = None
+        self.model = HistGradientBoostingRegressor()
 
     def act(self, observation, use_random=False):
         Qsa =[]
