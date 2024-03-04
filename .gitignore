@@ -10,10 +10,13 @@ __pycache__/
 samples
 
 # User notebooks
-train_lazy.ipynb
+#train_lazy.ipynb
+train_lazy copy.ipynb
+
 
 # Old models
 best.pt
+Q_best_1
 
 # Distribution / packaging
 .Python
